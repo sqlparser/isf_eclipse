@@ -3,8 +3,8 @@ isf_eclipse
 
 SQL Formatter plugin for eclipse
 
-#####Install
-Open eclipse, from help->install new software, type this site:
+####Install
+Open eclipse, menu help->install new software, enter this site:
 
 http://www.gudusoft.com/eclipse
 
