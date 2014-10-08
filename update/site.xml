@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description name="Gudusoft SQL Formatter Plugin Update" url="https://github.com/sqlparser/isf_eclipse/update">
+      Gudusoft SQL Formatter Plugin, copyright (C) 2002- 2014 Gudu Software (support@dpriver.com). All rights reserved.
+For more information on Gudusoft SQL Formatter Plugin, visit http://www.dpriver.com.
+   </description>
+   <feature url="features/gudusoft.gsqlparser.sqlformatter_1.0.1.201410071130.jar" id="gudusoft.gsqlparser.sqlformatter" version="1.0.1.201410071130">
+      <category name="Gudusoft SQL Formatter"/>
+   </feature>
+   <category-def name="Gudusoft SQL Formatter" label="Gudusoft SQL Formatter">
+      <description>
+         Gudusoft SQL Formatter Plugin
+      </description>
+   </category-def>
+</site>

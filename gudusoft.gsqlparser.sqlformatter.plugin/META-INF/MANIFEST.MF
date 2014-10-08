@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Gudusoft SQL Formatter Plugin
+Bundle-SymbolicName: gudusoft.gsqlparser.sqlformatter;singleton:=true
+Bundle-Version: 1.0.1.qualifier
+Bundle-Activator: gudusoft.gsqlparser.sqlformatter.SQLFormatPlugin
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ org.eclipse.jface.text,
+ org.eclipse.ui.workbench.texteditor,
+ org.eclipse.core.expressions
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: Gudusoft
+Bundle-ClassPath: library/json.jar,
+ .

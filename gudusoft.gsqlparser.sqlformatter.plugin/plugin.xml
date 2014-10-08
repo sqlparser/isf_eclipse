@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+	<extension
+      	point="org.eclipse.core.expressions.propertyTesters">
+   		<propertyTester
+         	class="gudusoft.gsqlparser.sqlformatter.test.SQLFormatTester"
+         	id="SQLFormatTester"
+         	namespace="SQLFormat"
+         	properties="enableFormat"
+         	type="java.lang.Object">
+   		</propertyTester>
+	</extension>
+	<extension point="org.eclipse.ui.popupMenus">
+      	<objectContribution
+            objectClass="org.eclipse.core.resources.mapping.ResourceMapping"
+            adaptable="true"
+            id="gudusoft.gsqlparser.sqlformatter.EditorFormatSQLContributions">
+      		<enablement>
+            	<test
+               		forcePluginActivation="true"
+               		property="SQLFormat.enableFormat"
+               		value="*">
+            	</test>
+         	</enablement>
+         	<action
+               label="Format SQL"
+               class="gudusoft.gsqlparser.sqlformatter.ui.FormatSQLAction"
+               menubarPath="additions"
+               enablesFor="1"
+               id="gudusoft.gsqlparser.sqlformatter.ui.EditorFormatSQLAction">
+         	</action>
+      	</objectContribution>
+    </extension>	
+       <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            name="SQL Formatter"
+            class="gudusoft.gsqlparser.sqlformatter.preference.SQLFormatOptionPreferencePage"
+            id="gudusoft.gsqlparser.sqlformatter.preference.SQLFormatOptionPreferencePage">
+      </page>
+   </extension>            
+</plugin>
+         
