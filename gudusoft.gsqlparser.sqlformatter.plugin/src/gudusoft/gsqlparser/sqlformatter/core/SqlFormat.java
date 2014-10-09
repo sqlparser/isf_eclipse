@@ -18,9 +18,8 @@ public class SqlFormat
 	{
 		try
 		{
-			String formatSql = sendPost( "http://www.gudusoft.com/format.php",
-					"rqst_db_vendor=oracle&rqst_isf_client=eclipse_client&rqst_input_sql="
-							+ URLEncoder.encode( sql, "utf-8" ) );
+			String formatSql = "rqst_db_vendor=oracle&rqst_isf_client=eclipse_client&rqst_input_sql="
+					+ URLEncoder.encode( sql, "utf-8" );
 
 			if ( formatOptions != null && formatOptions.trim( ).length( ) > 0 )
 			{
@@ -28,7 +27,8 @@ public class SqlFormat
 				formatSql += URLEncoder.encode( formatOptions, "utf-8" );
 			}
 
-			JSONObject jsonObject = new JSONObject( formatSql );
+			JSONObject jsonObject = new JSONObject( sendPost( "http://www.gudusoft.com/format.php",
+					formatSql ) );
 			return jsonObject.getString( "rspn_formatted_sql" );
 		}
 		catch ( Exception e )
