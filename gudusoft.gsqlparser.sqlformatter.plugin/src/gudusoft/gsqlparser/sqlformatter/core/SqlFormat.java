@@ -1,6 +1,8 @@
 
 package gudusoft.gsqlparser.sqlformatter.core;
 
+import gudusoft.gsqlparser.sqlformatter.SQLFormatPlugin;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,6 +11,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.swt.widgets.Display;
 import org.json.JSONObject;
 
 public class SqlFormat
@@ -31,8 +36,20 @@ public class SqlFormat
 					formatSql ) );
 			return jsonObject.getString( "rspn_formatted_sql" );
 		}
-		catch ( Exception e )
+		catch ( final Exception e )
 		{
+			Display.getDefault( ).syncExec( new Runnable( ) {
+
+				public void run( )
+				{
+					Status status = new Status( IStatus.ERROR,
+							SQLFormatPlugin.PLUGIN_ID,
+							e.getMessage( ),
+							e );
+					SQLFormatPlugin.getDefault( ).getLog( ).log( status );
+				}
+			} );
+
 		}
 		return null;
 	}
@@ -65,10 +82,19 @@ public class SqlFormat
 				result += line;
 			}
 		}
-		catch ( Exception e )
+		catch ( final Exception e )
 		{
-			System.out.println( "Send post request failed!\n" + e );
-			e.printStackTrace( );
+			Display.getDefault( ).syncExec( new Runnable( ) {
+
+				public void run( )
+				{
+					Status status = new Status( IStatus.ERROR,
+							SQLFormatPlugin.PLUGIN_ID,
+							"Send post request failed!",
+							e );
+					SQLFormatPlugin.getDefault( ).getLog( ).log( status );
+				}
+			} );
 		}
 		finally
 		{
@@ -83,9 +109,19 @@ public class SqlFormat
 					in.close( );
 				}
 			}
-			catch ( IOException ex )
+			catch ( final IOException ex )
 			{
-				ex.printStackTrace( );
+				Display.getDefault( ).syncExec( new Runnable( ) {
+
+					public void run( )
+					{
+						Status status = new Status( IStatus.ERROR,
+								SQLFormatPlugin.PLUGIN_ID,
+								"Send post request failed!",
+								ex );
+						SQLFormatPlugin.getDefault( ).getLog( ).log( status );
+					}
+				} );
 			}
 		}
 		return result;

@@ -5,6 +5,8 @@ import gudusoft.gsqlparser.sqlformatter.SQLFormatPlugin;
 import gudusoft.gsqlparser.sqlformatter.core.SqlFormat;
 import gudusoft.gsqlparser.sqlformatter.ui.util.UIUtil;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
@@ -52,7 +54,7 @@ public class FormatSQLAction extends ActionDelegate implements
 						SQLFormatPlugin.getDefault( )
 								.getPreferenceStore( )
 								.getString( SQLFormatPlugin.FORMAT_OPTIONS ) );
-				Display.getDefault( ).syncExec( new Runnable( ) {
+				Display.getDefault( ).asyncExec( new Runnable( ) {
 
 					public void run( )
 					{
@@ -80,7 +82,13 @@ public class FormatSQLAction extends ActionDelegate implements
 								}
 								catch ( BadLocationException e )
 								{
-
+									Status status = new Status( IStatus.ERROR,
+											SQLFormatPlugin.PLUGIN_ID,
+											e.getMessage( ),
+											e );
+									SQLFormatPlugin.getDefault( )
+											.getLog( )
+											.log( status );
 								}
 							}
 						}
