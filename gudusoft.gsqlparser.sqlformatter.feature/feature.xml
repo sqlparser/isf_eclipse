@@ -19,8 +19,8 @@
    </license>
 
    <url>
-      <update label="Gudusoft SQL Formatter Plugin Update" url="https://github.com/sqlparser/isf_eclipse/update"/>
-      <discovery label="%updateSiteName" url="https://github.com/sqlparser/isf_eclipse/update"/>
+      <update label="Gudusoft SQL Formatter Plugin Update" url="http://www.gudusoft.com/eclipse"/>
+      <discovery label="%updateSiteName" url="http://www.gudusoft.com/eclipse"/>
    </url>
 
    <requires>
