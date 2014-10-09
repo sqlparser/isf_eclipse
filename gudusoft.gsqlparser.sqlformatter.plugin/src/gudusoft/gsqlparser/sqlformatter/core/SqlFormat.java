@@ -32,9 +32,13 @@ public class SqlFormat
 				formatSql += URLEncoder.encode( formatOptions, "utf-8" );
 			}
 
-			JSONObject jsonObject = new JSONObject( sendPost( "http://www.gudusoft.com/format.php",
-					formatSql ) );
-			return jsonObject.getString( "rspn_formatted_sql" );
+			String response = sendPost( "http://www.gudusoft.com/format.php",
+					formatSql );
+			if ( response != null && response.trim( ).length( ) > 0 )
+			{
+				JSONObject jsonObject = new JSONObject( response );
+				return jsonObject.getString( "rspn_formatted_sql" );
+			}
 		}
 		catch ( final Exception e )
 		{
